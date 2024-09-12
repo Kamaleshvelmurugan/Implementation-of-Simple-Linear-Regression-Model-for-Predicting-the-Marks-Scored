@@ -6,112 +6,80 @@ To write a program to predict the marks scored by a student using the simple lin
 ## Equipments Required:
 1. Hardware – PCs
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
-
 ## Algorithm
-1. Import the required libraries and read the dataframe.
-2. Set variables for assigning dataset values.
-3. Import linear regression from sklearn.
-4. Assign the points for representing in the graph.
-5. Predict the regression for marks by using the representation of the graph.
-6. Compare the graphs and hence we obtained the linear regression for the given datas.
+1.Start
+2.Import the standard Libraries.
+3.Set variables for assigning dataset values.
+4.Import linear regression from sklearn.
+5.Assign the points for representing in the graph.
+6.Predict the regression for marks by using the representation of the graph.
+7.Compare the graphs and hence we obtained the linear regression for the given datas.
+8.End.
 
 ## Program:
 ```
-/*
-Program to implement the simple linear regression model for predicting the marks scored.
-Developed by: Kamalesh V
-RegisterNumber: 212222240042
-*/
+Program to implement the simple linear regression model
+for predicting the marks scored.
+Developed by: NARENDHARAN.M
+RegisterNumber: 212223230134
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error,mean_squared_error
-df=pd.read_csv('/content/student_scores.csv')
-
-df.head()
-
-df.tail()
-
-#Array value of X
-X=df.iloc[:,:-1].values
-X
-
-#Array value of Y
-Y=df.iloc[:,1].values
-Y
-
-#splitting train and test data
+df=pd.read_csv('Desktop\student_scores.csv')
+print(df)
+df.head(0)
+df.tail(0)
+print(df.head())
+print(df.tail())
+x = df.iloc[:,:-1].values
+print(x)
+y = df.iloc[:,1].values
+print(y)
 from sklearn.model_selection import train_test_split
-X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=1/3,random_state=0)
-
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
 from sklearn.linear_model import LinearRegression
-regressor=LinearRegression()
-regressor.fit(X_train,Y_train)
-Y_pred=regressor.predict(X_test)
-
-#displaying predicted values
-Y_pred
-
-#displaying actual values
-Y_test
-
-#graph plot for training data
-plt.scatter(X_train,Y_train,color="orange")
-plt.plot(X_train,regressor.predict(X_train),color="blue")
-plt.title("Hours Vs Scores(Train Set)")
+regressor = LinearRegression()
+regressor.fit(x_train,y_train)
+y_pred = regressor.predict(x_test)
+print(y_pred)
+print(y_test)
+plt.scatter(x_train,y_train,color='black')
+plt.plot(x_train,regressor.predict(x_train),color='blue')
+plt.title("Hours vs Scores(Training set)")
 plt.xlabel("Hours")
 plt.ylabel("Scores")
 plt.show()
-
-#graph plot for test data
-plt.scatter(X_test,Y_test,color="purple")
-plt.plot(X_test,regressor.predict(X_test),color="yellow")
-plt.title("Hours Vs Scores(Test Set)")
+plt.scatter(x_test,y_test,color='black')
+plt.plot(x_train,regressor.predict(x_train),color='red')
+plt.title("Hours vs Scores(Testing set)")
 plt.xlabel("Hours")
 plt.ylabel("Scores")
 plt.show()
-
-mse=mean_squared_error(Y_test,Y_pred)
+mse=mean_absolute_error(y_test,y_pred)
 print('MSE = ',mse)
-
-mae=mean_absolute_error(Y_test,Y_pred)
-print('MAE ',mae)
-
+mae=mean_absolute_error(y_test,y_pred)
+print('MAE = ',mae)
 rmse=np.sqrt(mse)
-print("RMSE = ",rmse)
+print("RMSE= ",rmse) 
 ```
-
 ## Output:
-### df.head()
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/b8ce1d61-b828-40e3-8b77-bd6d8cf8a067)
-
-### df.tail()
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/c3c0295c-50fe-4d92-a0fc-f665b93f4bc5)
-
-### Array value of X
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/a5ee3ba7-15af-40ba-aee8-c5bdda7fe31b)
-
-### Array value of Y
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/b49f7299-b828-45d1-84cc-d79672f3236e)
-
-### Values of Y prediction
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/9b9b6375-dc17-4bb0-8acd-5bd98153612c)
-
-### Array values of Y test
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/027a1a39-6de4-455b-9c32-95eabe2541fa)
-
-### Training Set Graph
-
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/1a1898d6-4be2-459a-9d69-8d4a2524bf8e)
-
-### Test Set Graph
-
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/af17ef9e-4a03-4f64-874e-953e230fff50)
-
-### Values of MSE, MAE and RMSE
-
-![image](https://github.com/ShanmathiShanmugam/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/121243595/dae19f26-1dc7-4481-b702-aa7b19126ccf)
-
-
+## Predicted Values of X and Y:
+```
+[17.04289179 33.51695377 74.21757747 26.73351648
+59.68164043 39.33132858 20.91914167 78.09382734 69.37226512]
+[20 27 69 30 62 35 24 86 76]
+```
+## MSE , MAE and RMSE:
+```
+MSE =  4.691397441397438
+MAE =  4.691397441397438
+RMSE=  2.1659633979819324
+```
+## Training set
+![Screenshot 2024-08-30 112651](https://github.com/user-attachments/assets/d6b0d378-b157-4670-acc1-0c3a08c02404)
+## Testing Set
+![Screenshot 2024-08-30 112806](https://github.com/user-attachments/assets/fc0cd86b-f5dd-4805-b50e-e01d61e20ac8)
 ## Result:
 Thus the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
